@@ -54,7 +54,13 @@ $conn = Connection::getInstance();
         $query = $conn->query("select * from product where id_danhmuc=$id_danhmuc");
         foreach ($data = $query->fetchAll() as $row) {
         ?>
-          <div id="product-infor" class="card" style="width: 15rem;height:29rem">
+
+          <div id="product-infor" class="card position-relative" style="width: 15rem;height:29rem">
+            <?php if (is_numeric($row->discount)) { ?>
+              <div class="onsale position-absolute top-0 start-0">
+                <span class="badge rounded-0 bg-danger"><i class="fa-solid fa-arrow-down"></i><?php echo $row->discount ?>%</span>
+              </div>
+            <?php } ?>
             <div>
               <a id="img_pro" href="index.php?controller=product&action=detail&id=<?php echo $row->idPro ?>"> <img class="card-img-top img-fluid p-2" style="max-height:20rem" src="../Project-petcare-php/assets/img-add-pro/<?php echo $row->hinhanh ?>" alt="Card image cap"></a>
             </div>
