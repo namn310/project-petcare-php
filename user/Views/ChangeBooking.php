@@ -14,7 +14,7 @@ $customerId = isset($_SESSION['customer_id']) ? $_SESSION['customer_id'] : 0;
     <hr>
     <div class="row">
         <div class="col-4">
-            <img src="../images/login-img/load.gif" class="w-100">
+            <img src="../Project-petcare-php/images/login-img/load.gif" class="w-100">
         </div>
         <?php foreach ($data as $row) { ?>
             <div class="col-8 align-items-left d-flex justify-content-left ps-5">
