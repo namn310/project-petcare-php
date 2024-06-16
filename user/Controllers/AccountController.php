@@ -18,6 +18,7 @@ class AccountController extends Controller
     public function logOut()
     {
         unset($_SESSION["customer_email"]);
+        unset($_SESSION["customer_id"]);
         header("location:index.php?controller=home");
     }
 }

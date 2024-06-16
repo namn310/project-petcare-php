@@ -107,75 +107,79 @@ $result = $query->fetchAll();
 
 ?>
 <!-- Nếu có danh sách lịch hiện thì sẽ hiện ra ở đây -->
-<div class="booking mt-5 mb-4 text-center">
-  <h3 style="color:#EA9E1E">ĐẶT LỊCH</h3>
-  <i class="container">Nếu bạn muốn sửa thông tin lịch đã đặt thì bấm sửa để thay đổi lịch hẹn! Sau khi chúng tôi nhận được thông báo đặt lịch nhân viên sẽ liên hệ với bạn. Vui lòng thanh toán với nhân viên để bảo đảm việc đặt lịch !</i>
-  <i>Nếu khách hàng có nhu cầu thay đổi lịch hẹn sau khi lịch hẹn đã được phê duyệt, xin vui lòng liên hệ với chúng tôi qua <b>hotline: 012345678</b> để được hỗ trợ</i>
-  <div class="container-fluid">
+<?php
+if (isset($_SESSION['customer_id'])) {
+?>
+  <div class="booking mt-5 mb-4 text-center">
+    <h3 style="color:#EA9E1E">ĐẶT LỊCH</h3>
+    <i class="container">Nếu bạn muốn sửa thông tin lịch đã đặt thì bấm sửa để thay đổi lịch hẹn! Sau khi chúng tôi nhận được thông báo đặt lịch nhân viên sẽ liên hệ với bạn. Vui lòng thanh toán với nhân viên để bảo đảm việc đặt lịch !</i>
+    <i>Nếu khách hàng có nhu cầu thay đổi lịch hẹn sau khi lịch hẹn đã được phê duyệt, xin vui lòng liên hệ với chúng tôi qua <b>hotline: 012345678</b> để được hỗ trợ</i>
+    <div class="container-fluid">
 
-    <table class="table table-bordered align-middle text-center  p-3">
-      <thead>
-        <th>Tên Boss</th>
-        <th>Loại</th>
-        <th>Tên dịch vụ</th>
-        <th>Tên gói</th>
-        <th>Cân nặng của Boss</th>
-        <th>Lịch đặt</th>
-        <th class="text-center d-flex flex-wrap"></th>
-      </thead>
+      <table class="table table-bordered align-middle text-center  p-3">
+        <thead>
+          <th>Tên Boss</th>
+          <th>Loại</th>
+          <th>Tên dịch vụ</th>
+          <th>Tên gói</th>
+          <th>Cân nặng của Boss</th>
+          <th>Lịch đặt</th>
+          <th class="text-center d-flex flex-wrap"></th>
+        </thead>
 
-      <tbody class="booking-detail text-center">
+        <tbody class="booking-detail text-center">
 
-        <?php
-        foreach ($result as $row) {
-
-        ?>
-          <tr>
-
-            <td>
-
-              <input class="form-control" name="Bossname" value=" <?php echo $row->namePet ?>">
-
-            </td>
-            <td>
-              <input class="form-control" name="Bosstype" value=" <?php echo $row->type ?>">
-            </td>
-            <td>
-              <input class="form-control" name="dichvu" value=" <?php echo $row->nameService ?>">
-            </td>
-            <td>
-              <input class="form-control" name="goi" value=" <?php echo $row->goi ?>">
-            </td>
-            <td>
-              <input class="form-control" name="weight" value=" <?php echo $row->weight ?>">
-            </td>
-            <td>
-              <input class="form-control" name="date" value=" <?php echo $row->dateBook ?>">
-            </td>
-            <td class="text-center d-flex flex-wrap justify-content-around">
-              <?php
-              if ($row->tinhtrangBook == 1) {
-              ?>
-            <th><button class="btn btn-success">Đã duyệt</button></th>
           <?php
-              } else { ?>
-            <a name="changeBook" href="index.php?controller=book&action=change&id=<?php echo $row->id ?>" class="changeBook" style="text-decoration:none"> <button type="submit" class="btn btn-primary">Sửa</button>
-              <a class="mt-2" href="index.php?controller=book&action=delete&id=<?php echo $row->id ?>" style="text-decoration:none"> <button class="btn btn-danger ms-1" name="deleteBook">Xóa</button></a>
-            <?php } ?>
+          foreach ($result as $row) {
 
-            </td>
+          ?>
+            <tr>
 
-          </tr>
+              <td>
 
-        <?php
-        } ?>
-      </tbody>
-    </table>
+                <input class="form-control" name="Bossname" value=" <?php echo $row->namePet ?>">
 
+              </td>
+              <td>
+                <input class="form-control" name="Bosstype" value=" <?php echo $row->type ?>">
+              </td>
+              <td>
+                <input class="form-control" name="dichvu" value=" <?php echo $row->nameService ?>">
+              </td>
+              <td>
+                <input class="form-control" name="goi" value=" <?php echo $row->goi ?>">
+              </td>
+              <td>
+                <input class="form-control" name="weight" value=" <?php echo $row->weight ?>">
+              </td>
+              <td>
+                <input class="form-control" name="date" value=" <?php echo $row->dateBook ?>">
+              </td>
+              <td class="text-center d-flex flex-wrap justify-content-around">
+                <?php
+                if ($row->tinhtrangBook == 1) {
+                ?>
+              <th><button class="btn btn-success">Đã duyệt</button></th>
+            <?php
+                } else { ?>
+              <a name="changeBook" href="index.php?controller=book&action=change&id=<?php echo $row->id ?>" class="changeBook" style="text-decoration:none"> <button type="submit" class="btn btn-primary">Sửa</button>
+                <a class="mt-2" href="index.php?controller=book&action=delete&id=<?php echo $row->id ?>" style="text-decoration:none"> <button class="btn btn-danger ms-1" name="deleteBook">Xóa</button></a>
+              <?php } ?>
+
+              </td>
+
+            </tr>
+
+          <?php
+          } ?>
+        </tbody>
+      </table>
+
+
+    </div>
 
   </div>
-
-</div>
+<?php } ?>
 <script>
   $(document).ready(function() {
     $(".formChangeBook").hide();
