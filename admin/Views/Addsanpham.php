@@ -168,12 +168,13 @@ $this->layoutPath = "Layout.php";
                 <label style="font-weight: bolder;" class="control-label mt-3">Danh mục</label>
                 <select class="form-control" onclick="checkDanhMuc()" onchange="checkDanhMuc()" id="danhmucAddpro" name="danhmucAddpro" required>
                     <option>Chọn danh mục</option>
-                    <option>Pate</option>
-                    <option>Thức ăn hạt</option>
-                    <option>Thực phẩm chức năng</option>
-                    <option>Đồ chơi</option>
-                    <option>Dụng cụ</option>
-                    <option>Phụ kiện</option>
+                    <?php
+                    $conn = Connection::getInstance();
+                    $query = $conn->query("select * from danhmuc");
+                    foreach ($query->fetchAll() as $row) {
+                    ?>
+                        <option><?php echo $row->tendanhmuc ?></option>
+                    <?php } ?>
                 </select>
             </div>
 
