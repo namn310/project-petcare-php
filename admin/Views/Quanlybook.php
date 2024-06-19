@@ -63,9 +63,31 @@ $query = $conn->query("select * from booking");
                                     <?php } ?>
                                     <td class="d-flex justify-content-between flex-wrap">
                                         <a style="text-decoration:none" href="index.php?controller=book&action=detail&id=<?php echo $row->id ?>"><button class="btn btn-secondary"><i class="fa-solid fa-bars"></i></button></a>
-                                        <a style="text-decoration:none" class="ms-2" href="index.php?controller=book&action=confirm&id=<?php echo $row->id ?>"><button class="btn btn-primary"><i class="fa-solid fa-check"></i></button></a>
-                                        <a style="text-decoration:none" class="ms-2" href="index.php?controller=book&action=unconfirm&id=<?php echo $row->id ?>"><button class="btn btn-warning"><i class="fa-solid fa-circle-notch"></i></button></a>
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBook"><i class="fa-solid fa-xmark"></i></button>
+
+                                        <a onclick="return confirm('Xác nhận lịch hẹn ?')" style="text-decoration:none" class="ms-2" href="index.php?controller=book&action=confirm&id=<?php echo $row->id ?>"><button class="btn btn-primary"><i class="fa-solid fa-check"></i></button></a>
+
+                                        <a onclick="return confirm('Hủy xác nhận lịch hẹn ?')" style="text-decoration:none" class="ms-2" href="index.php?controller=book&action=unconfirm&id=<?php echo $row->id ?>"><button class="btn btn-warning"><i class="fa-solid fa-circle-notch"></i></button></a>
+
+                                        <button class="btn btn-danger" data-bs-target="#deleteBook<?php $row->id ?>" data-bs-toggle="modal"><i class="fa-solid fa-xmark"></i></button>
+
+                                        <!-- Modal xóa order -->
+                                        <div class="modal fade" id="deleteBook<?php $row->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thông báo</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h5>Bạn có chắc chắn muốn xóa lịch hẹn này không ?</h5>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                                        <a style="text-decoration:none" class="ms-2" href="index.php?controller=book&action=delete&id=<?php echo $row->id ?>"><button class="btn btn-primary">Xác nhận</button></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
 
                                     </td>
@@ -93,37 +115,6 @@ $query = $conn->query("select * from booking");
 <!-- Button trigger modal -->
 
 
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <i class="fa-solid fa-check-double" style="color: #12ca27;"></i>
-            <strong class="me-auto ms-2">Thông báo</strong>
-            <small>Now</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-            Đơn hàng đã được giao !
-        </div>
-    </div>
-</div>
-<!-- Modal xóa order -->
-<div class="modal fade" id="deleteBook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Thông báo</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5>Bạn có chắc chắn muốn xóa lịch hẹn này không ?</h5>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                <a style="text-decoration:none" class="ms-2" href="index.php?controller=book&action=delete&id=<?php echo $row->id ?>"><button class="btn btn-primary">Xác nhận</button></a>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Modal giao hàng -->
 
 <div class="modal fade" id="delivery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

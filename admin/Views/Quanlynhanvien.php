@@ -15,29 +15,7 @@ $this->layoutPath = "Layout.php";
 
                         <button id="uploadfile" class="btn btn-success" type="button" title="Nhập" onclick="myFunction(this)"><a id="addnhanvien" href="index.php?controller=nhanvien&action=create"><i class="fas fa-plus"></i>>
                                 Tạo mới nhân viên</a></button>
-                        <!--
-                                <button id="uploadfile" class="btn btn-secondary btn-sm nhap-tu-file" type="button"
-                                    title="Nhập" onclick="myFunction(this)"><i class="fas fa-file-upload"></i>>
-                                    Tải từ file</button>
 
-
-
-                                <a class="btn btn-primary btn-sm print-file" type="button" title="In"
-                                    onclick="myApp.printTable()"><i class="fas fa-print"></i> In dữ liệu</a>
-
-
-                                <a class="btn btn-warning btn-sm print-file js-textareacopybtn" type="button"
-                                    title="Sao chép"><i class="fas fa-copy"></i> Sao chép</a>
-
-
-
-                                <a class="btn btn-success btn-sm" href="" title="In"><i class="fas fa-file-excel"></i>
-                                    Xuất Excel</a>
-
-
-                                <a class="btn btn-danger btn-sm pdf-file" type="button" title="In"
-                                    onclick="myFunction(this)"><i class="fas fa-file-pdf"></i> Xuất PDF</a>
- -->
                     </div>
                     <div class="search mt-4 mb-4 input-group" style="width:50%">
                         <button class="input-group-text btn btn-success"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -49,15 +27,15 @@ $this->layoutPath = "Layout.php";
                     <table class="table table-hover table-bordered text-center" cellpadding="0" cellspacing="0" border="0" id="sampleTable">
                         <thead>
                             <tr class="table-primary">
-                                <th width="10">
+                                <th>
                                 </th>
                                 <th>
                                     ID nhân viên
                                 </th>
-                                <th width="150">
+                                <th>
                                     Họ và tên
                                 </th>
-                                <th width="20">
+                                <th>
                                     Ảnh thẻ
                                 </th>
 
@@ -66,7 +44,7 @@ $this->layoutPath = "Layout.php";
                                 <th>SĐT</th>
                                 <th>email</th>
                                 <th>Chức vụ</th>
-                                <th width="100">
+                                <th>
                                     Tính năng
                                 </th>
                             </tr>
@@ -87,7 +65,7 @@ $this->layoutPath = "Layout.php";
                                         <?php echo $a->tenNV ?>
                                     </td>
                                     <td>
-                                        <img class="img-fluid" src="../assets/img-nhanvien/<?php echo $a->anhNV  ?>" alt="" />
+                                        <img class="img-fluid" style="max-width:50%" src="../assets/img-nhanvien/<?php echo $a->anhNV  ?>" alt="" />
                                     </td>
 
                                     <td><?php echo $a->birth ?></td>
@@ -96,11 +74,11 @@ $this->layoutPath = "Layout.php";
                                     <td><?php echo $a->email ?></td>
                                     <td><?php echo $a->chucvu ?></td>
                                     <td class="table-td-center">
-                                        <button class="btn btn-danger btn-sm trash" data-bs-target="#delete" data-bs-toggle="modal" type="button" title="Xóa">
-                                            <i class="fas fa-trash-alt"></i>
+                                        <a style="text-decoration:none;color:white" onclick="return confirm('Bạn có muốn xóa không ?')" href="index.php?controller=nhanvien&action=delete&id=<?php echo $a->idNV ?>"><button class="btn btn-danger btn-sm trash" type="button" title="Xóa">
+                                                <i class="fas fa-trash-alt"></i></a>
                                         </button>
-                                        <button class="btn btn-success btn-sm edit" type="button" title="Sửa" id="show-emp" data-bs-toggle="modal" data-bs-target="#ModalUP">
-                                            <i class="fas fa-edit"></i>
+                                        <button class="btn btn-success btn-sm edit" type="button" title="Sửa" id="show-emp">
+                                            <a style="text-decoration:none;color:white" href="index.php?controller=nhanvien&action=change&id=<?php echo $a->idNV ?>"><i class="fas fa-edit"></i> </a>
                                         </button>
                                     </td>
                                 </tr>
@@ -119,63 +97,7 @@ $this->layoutPath = "Layout.php";
 <!--
   MODAL
 -->
-<div class="modal fade" id="ModalUP" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5>
-                    Chỉnh sửa thông tin
-                    nhân viên
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="control-label">ID nhân viên</label>
-                        <input class="form-control" type="text" required value="#CD2187" disabled />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Họ và tên</label>
-                        <input class="form-control" type="text" required value="Hồ Thị Thanh Ngân" />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Số điện thoại</label>
-                        <input class="form-control" type="number" required value="09267312388" />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Địa chỉ email</label>
-                        <input class="form-control" type="text" required value="namnnrr@gmail.com" />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Ngày sinh</label>
-                        <input class="form-control" type="date" value="15/03/2000" />
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="exampleSelect1" class="control-label">Chức vụ</label>
-                        <select class="form-control" id="exampleSelect1">
-                            <option>Bán hàng</option>
-                            <option>Tư vấn</option>
-                            <option>Dịch vụ</option>
-                            <option>Bác sĩ thú y</option>
-                            <option>Spa-Grooming</option>
-                        </select>
-                    </div>
-                </div>
-                <br />
 
-
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-success" data-bs-dismiss="modal" type="button">
-                    Lưu lại
-                </button>
-                <button class="btn btn-danger" data-bs-dismiss="modal" href="#">Hủy bỏ</button>
-            </div>
-
-        </div>
-    </div>
-</div>
 <!--
   MODAL
 -->

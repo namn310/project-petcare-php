@@ -15,30 +15,6 @@ $this->layoutPath = "Layout.php";
 
                         <button id="uploadfile" class="btn btn-success btn-sm nhap-tu-file" type="button" title="Nhập"><a style="color:white" href="index.php?controller=product&action=create"><i class="fas fa-plus"></i>>
                                 Tạo mới sản phẩm</a></button>
-                        <!-- 
-                                <button id="uploadfile" class="btn btn-secondary btn-sm nhap-tu-file" type="button"
-                                    title="Nhập" onclick="myFunction(this)"><i class="fas fa-file-upload"></i>>
-                                    Tải từ file</button>
-
-
-
-                                <a class="btn btn-primary btn-sm print-file" type="button" title="In"
-                                    onclick="myApp.printTable()"><i class="fas fa-print"></i> In dữ liệu</a>
-
-
-                                <a class="btn btn-warning btn-sm print-file js-textareacopybtn" type="button"
-                                    title="Sao chép"><i class="fas fa-copy"></i> Sao chép</a>
-
-
-
-                                <a class="btn btn-success btn-sm" href="" title="In"><i class="fas fa-file-excel"></i>
-                                    Xuất Excel</a>
-
-
-                                <a class="btn btn-danger btn-sm pdf-file" type="button" title="In"
-                                    onclick="myFunction(this)"><i class="fas fa-file-pdf"></i> Xuất PDF</a>
-
-                                    -->
                     </div>
                     <div class="search mt-4 mb-4 input-group" style="width:50%">
                         <button class="input-group-text btn btn-success"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -78,7 +54,7 @@ $this->layoutPath = "Layout.php";
                                     <td><?php echo $row->discount ?></td>
                                     <td><?php echo $row->danhmuc ?></td>
                                     <td class="table-td-center">
-                                        <a href="index.php?controller=product&action=delete&id=<?php echo $row->idPro ?>"> <button class="btn btn-danger btn-sm trash" data-bs-toggle="modal" type="button" title="Xóa">
+                                        <a> <button class="btn btn-danger btn-sm trash" data-bs-toggle="modal" data-bs-target="#deleteProduct<?php $row->idPro ?>" type="button" title="Xóa">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button></a>
                                         <button class="btn btn-success btn-sm edit" type="button" title="Sửa" id="show-emp">
@@ -86,7 +62,7 @@ $this->layoutPath = "Layout.php";
                                         </button>
 
                                         <!-- Modal xóa -->
-                                        <div class="modal fade" id="delete-product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deleteProduct<?php $row->idPro ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -124,6 +100,12 @@ $this->layoutPath = "Layout.php";
         </div>
     </div>
 </div>
+<?php if (isset($status)) { ?>
+    <div class="alert alert-success alert-dismissible" style="width:30%;position:absolute;top:100px;right:0">
+        <p></p>
+        <button data-bs-dismiss="alert" class="btn btn-close"></button>
+    </div>
+<?php } ?>
 
 
 <!--

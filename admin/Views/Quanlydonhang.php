@@ -57,13 +57,13 @@ $this->layoutPath = "Layout.php";
                   } ?>
 
                   <td>
-                    <a style="color:white;text-decoration:none"> <button data-bs-toggle="modal" data-bs-target="#deleteOrder" class="btn btn-danger"> <i class="bi bi-trash"></i></button></a>
+                    <a onclick="return confirm('Bạn có muốn xóa đơn hàng này không ? ')" style="color:white;text-decoration:none"> <button data-bs-toggle="modal" class="btn btn-danger"> <i class="bi bi-trash"></i></button></a>
                     <?php
                     if ($row->status > 0) {
                     } else {
                     ?>
 
-                      <a href="index.php?controller=donhang&action=delivery&id=<?php echo $row->id ?>"> <button data-bs-toggle="modal" class="btn btn-success"><i class="fa-solid fa-truck"></i></button></a>
+                      <a onclick="return confirm('Xác nhận giao hàng')" href="index.php?controller=donhang&action=delivery&id=<?php echo $row->id ?>"> <button data-bs-toggle="modal" class="btn btn-success"><i class="fa-solid fa-truck"></i></button></a>
                     <?php } ?>
 
                     <button class="btn btn-primary"><a style="color:white;text-decoration:none" href="index.php?controller=donhang&action=detail&id=<?php echo $row->id ?>">Xem </a></button>

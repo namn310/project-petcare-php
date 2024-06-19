@@ -13,34 +13,7 @@ $result = $query->fetchAll();
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
-                    <!--
-                            <div class="button-function d-flex justify-content-between mt-3 mb-4" style="width:70%">
-
-
-                                <button id="uploadfile" class="btn btn-secondary btn-sm nhap-tu-file" type="button"
-                                    title="Nhập" onclick="myFunction(this)"><i class="fas fa-file-upload"></i>>
-                                    Tải từ file</button>
-
-
-
-                                <a class="btn btn-primary btn-sm print-file" type="button" title="In"
-                                    onclick="myApp.printTable()"><i class="fas fa-print"></i> In dữ liệu</a>
-
-
-                                <a class="btn btn-warning btn-sm print-file js-textareacopybtn" type="button"
-                                    title="Sao chép"><i class="fas fa-copy"></i> Sao chép</a>
-
-
-
-                                <a class="btn btn-success btn-sm" href="" title="In"><i class="fas fa-file-excel"></i>
-                                    Xuất Excel</a>
-
-
-                                <a class="btn btn-danger btn-sm pdf-file" type="button" title="In"
-                                    onclick="myFunction(this)"><i class="fas fa-file-pdf"></i> Xuất PDF</a>
-
-                            </div>
-                            -->
+                   
                     <div class="search mt-4 mb-4 input-group" style="width:50%">
                         <button class="input-group-text btn btn-success"><i class="fa-solid fa-magnifying-glass"></i></button>
                         <input class="form-control" type="text" id="searchCustomer">

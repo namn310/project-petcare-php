@@ -28,7 +28,24 @@ class NhanvienController extends Controller
     public function delete()
     {
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
-        $this->delete($id);
+        $conn = Connection::getInstance();
+        $query = $conn->prepare("delete from nhanvien where idNV=:id");
+        $query->execute([':id' => $id]);
+        header("Location:index.php?controller=nhanvien");
+    }
+    //thay đổi thông tin nhân viên
+    public function change()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+        }
+        $record = $this->modelGetRecord($id);
+        $this->loadView("ChangeNV.php", ["record" => $record]);
+    }
+    public function changePost()
+    {
+        $id = isset($_GET['id']) && is_numeric($_GET['id']) ? $_GET['id'] : 0;
+        $this->modelChange($id);
         header("Location:index.php?controller=nhanvien");
     }
 }
