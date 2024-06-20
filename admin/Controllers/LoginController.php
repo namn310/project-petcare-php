@@ -17,4 +17,13 @@ class LoginController extends Controller
         unset($_SESSION["admin_email"]);
         header("Location:index.php");
     }
+    public function register()
+    {
+        $this->loadView('Register.php');
+    }
+    public function registerAccount()
+    {
+        $this->modelRegister();
+        
+    }
 }

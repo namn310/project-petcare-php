@@ -40,4 +40,30 @@ trait loginModel
             echo ('<script>alert("Email hoặc mật khẩu không chính xác !")</script>');
         header("location:index.php?controller=login");
     }
+    public function modelRegister()
+    {
+        $email = $_POST["email_signup"];
+        $name = $_POST["name"];
+        $password = $_POST["password"];
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL) || !preg_match("/^[A-Za-z\sAÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZaàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+$/", $name) || !preg_match("/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/", $password)) {
+            header("location:index.php?controller=login&action=register");
+        } else {
+            $conn = Connection::getInstance();
+            $check = $conn->prepare("select * from admin where email=:_email");
+            $check->execute([":_email" => $email]);
+            if ($check->rowCount() > 0) {
+                echo '<script>return alert("Email đã tồn tại !")</script>';
+                header("location:index.php?controller=login&action=register");
+            } else {
+
+                $password = md5($password);
+                $query1 = $conn->prepare("insert into admin (name,email,pass) values (:name,:email,:pass)");
+                $query1->execute([':name' => $name, ':email' => $email, ':pass' => $password]);
+                echo '<script>alert("Đăng ký thành công !")</script>';
+                header("location:index.php?controller=login");
+            }
+            //di chuyen den trang login
+
+        }
+    }
 }

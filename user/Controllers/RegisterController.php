@@ -11,6 +11,6 @@ class RegisterController extends Controller
     public function registerPost()
     {
         $this->modelRegister();
-        header("location:index.php?controller=account");
+       
     }
 }

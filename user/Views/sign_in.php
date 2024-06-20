@@ -45,25 +45,30 @@
                         <h3 style="font-family: 'Courier New', Courier, monospace;font-weight: 600;">Đăng Ký</h3>
                     </div>
 
-                    <form id="loginForm" method="post" action="index.php?controller=register&action=registerPost">
+                    <form id="loginForm" onsubmit="checkFormRegis()" method="post" action="index.php?controller=register&action=registerPost">
                         <div class="form-group mb-3">
-                            <input onclick="checkUserSignup()" onkeyup="checkUserSignup()" type="username" name="name" class="form-control form-control-lg bg-light fs-6" id="username" placeholder="Tên người dùng">
+                            <input onclick="checkUser()" onkeyup="checkUser()" type="username" name="name" class="form-control form-control-lg bg-light fs-6" id="name" placeholder="Tên người dùng">
                             <p class="UsernameError text-danger text-start ps-1"></p>
                         </div>
                         <div class="form-group mb-3">
-                            <input onclick="checkEmailSignup()" onkeyup="checkEmailSignup()" type="email" name="email" class="form-control form-control-lg bg-light fs-6" id="email_signup" placeholder="Địa chỉ Email">
+                            <input onclick="checkEmail()" onkeyup="checkEmail()" type="email" name="email" class="form-control form-control-lg bg-light fs-6" id="email" placeholder="Địa chỉ Email">
                             <p class="emailError text-danger text-start ps-1"></p>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="text" onclick="checkCustomerDetailPhone()" onkeyup="checkCustomerDetailPhone()" name="phone" class="form-control form-control-lg bg-light fs-6" id="phone_signup" placeholder="Số điện thoại">
+                            <input type="text" onclick="checkPhone()" onkeyup="checkPhone()" name="phone" class="form-control form-control-lg bg-light fs-6" id="phone" placeholder="Số điện thoại">
                             <p class=" text-danger text-start ps-1"></p>
                         </div>
                         <div class="form-group mb-3">
-                            <input type="text" name="local" class="form-control form-control-lg bg-light fs-6" id="local_signup" placeholder="Địa chỉ">
+                            <input type="text" name="local" class="form-control form-control-lg bg-light fs-6" id="local" placeholder="Địa chỉ">
                             <p class=" text-danger text-start ps-1"></p>
                         </div>
                         <div class="form-group mb-3">
-                            <input onclick="checkPasswordSignup()" onkeyup="checkPasswordSignup()" type="password" name="pass" class="form-control form-control-lg bg-light fs-6" id="password_signup" placeholder="Mật Khẩu">
+                            <input onclick="checkPassword()" onkeyup="checkPassword()" type="password" name="pass" class="form-control form-control-lg bg-light fs-6" id="password" placeholder="Mật Khẩu">
+                            <p class="passwordError text-danger text-start ps-1"></p>
+                            <i>Mật khẩu ít nhất 6 ký tự bao gồm số và chữ</i>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input onclick="checkRePass()" onkeyup="checkRePass()" type="password" name="pass" class="form-control form-control-lg bg-light fs-6" id="Repassword" placeholder="Nhập lại mật khẩu">
                             <p class="passwordError text-danger text-start ps-1"></p>
                         </div>
 
@@ -84,10 +89,10 @@
         </div>
     </div>
     <script>
-        function checkCustomerDetailPhone() {
+        function checkPhone() {
             var correct_phone =
                 /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
-            var phone = document.getElementById("phone_signup");
+            var phone = document.getElementById("phone");
             var phone_val = parseInt(phone.value);
             if (phone_val == "" || correct_phone.test(phone_val) == false) {
                 phone.classList.add("is-invalid");
@@ -98,44 +103,81 @@
                 return true;
             }
         }
-
-        function isEmail(inputEmail) {
-            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            return regex.test(inputEmail);
+        //Check dang ky
+        function checkUser() {
+            var name_correct =
+                /^[A-Za-z\sAÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬBCDĐEÈẺẼÉẸÊỀỂỄẾỆFGHIÌỈĨÍỊJKLMNOÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢPQRSTUÙỦŨÚỤƯỪỬỮỨỰVWXYỲỶỸÝỴZaàảãáạăằẳẵắặâầẩẫấậbcdđeèẻẽéẹêềểễếệfghiìỉĩíịjklmnoòỏõóọôồổỗốộơờởỡớợpqrstuùủũúụưừửữứựvwxyỳỷỹýỵz]+$/;
+            var name = document.getElementById("name");
+            var name_val = document.getElementById("name").value;
+            if (name_val == "" || name_correct.test(name_val) == false) {
+                name.classList.add("is-invalid");
+                return false;
+            } else {
+                name.classList.remove("is-invalid");
+                name.classList.add("is-valid");
+                return true;
+            }
         }
 
-        function validatePassword(inputPassword) {
-            return inputPassword.length > 4;
+        function checkEmail() {
+            var correct_email =
+                /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
+            var email = document.getElementById("email");
+            var email_val = email.value;
+            if (email_val == "" || correct_email.test(email_val) == false) {
+                email.classList.add("is-invalid");
+                return false;
+            } else {
+                email.classList.remove("is-invalid");
+                email.classList.add("is-valid");
+                return true;
+            }
+
         }
 
-        $(document).ready(function() {
-            $('#email_signup').change(function() {
-                var email = $(this).val().trim();
-                // alert(`email = ${JSON.stringify(email)}`)
-                if (!isEmail(email)) {
-                    //Error ?
-                    $(".emailError").html("Địa chỉ email không hợp lệ!");
-                } else {
-                    $(".emailError").html("");
-                }
-            });
-            $('#password_signup').change(function() {
-                var password = $(this).val();
-                if (!validatePassword(password)) {
-                    $(".passwordError").html("Mật khẩu phải có ít nhất 8 ký tự, có ít nhất 1 chữ thường và 1 chữ in");
-                } else {
-                    $(".passwordError").html("");
-                }
-            });
-            $('#username').change(function() {
-                var password = $(this).val();
-                if (!validatePassword(password)) {
-                    $(".UsernameError").html("Tên người dùng không hợp lệ ");
-                } else {
-                    $(".UsernameError").html("");
-                }
-            });
-        });
+        function checkPassword() {
+            var correct_password =
+                /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+            var pass = document.getElementById("password");
+            var pass_val = pass.value;
+            if (pass_val == "" || correct_password.test(pass_val) == false) {
+                pass.classList.add("is-invalid");
+                return false;
+            } else {
+                pass.classList.remove("is-invalid");
+                pass.classList.add("is-valid");
+                return true;
+            }
+        }
+
+        function checkRePass() {
+            var correct_password =
+                /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+            var Repass = document.getElementById("Repassword");
+            var Repass_val = Repass.value;
+            var pass = document.getElementById("password").value;
+            if (Repass_val == "" || Repass_val !== pass || correct_password.test(Repass_val) == false) {
+                Repass.classList.add("is-invalid");
+                return false;
+            } else {
+                Repass.classList.remove("is-invalid");
+                Repass.classList.add("is-valid");
+                return true;
+            }
+        }
+
+        function checkFormRegis() {
+            if (checkRePass() !== true || checkPassword() !== true || checkEmail() !== true || checkUser() !== true || checkPhone() == false) {
+                return confirm("Kiểm tra lại thông tin");
+            } else {
+
+            }
+        }
+
+        function get() {
+            var pass = document.getElementById("password").value;
+            console.log(pass);
+        }
     </script>
 </body>
 
