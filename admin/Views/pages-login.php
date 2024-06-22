@@ -97,7 +97,6 @@ if($query->rowCount()>0){
                     <div class="col-12">
                       <p class="small mb-0">Don't you forgot account ? <a href="">Quên mật khẩu</a>
                       </p>
-                      <p><a href="index.php?controller=login&action=register">Đăng ký</a></p>
                     </div>
                   </form>
 

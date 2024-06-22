@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 19, 2024 lúc 11:41 AM
+-- Thời gian đã tạo: Th6 22, 2024 lúc 03:00 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `email`, `pass`, `name`) VALUES
-(1, 'admin@gmail.com', '25f9e794323b453885f5181f1b624d0b', 'Nguyễn Phương Nam');
+(2, 'admin@gmail.com', 'c2d13d48e92f79cc695e4c8199d63946', 'Nguyễn Phương Nam');
 
 -- --------------------------------------------------------
 
@@ -399,7 +399,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT cho bảng `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `booking`

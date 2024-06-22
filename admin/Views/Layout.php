@@ -240,22 +240,28 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-
-
-
                             <li>
                                 <a class="dropdown-item d-flex align-items-center" href="index.php?controller=login&action=logOut">
                                     <i class="bi bi-box-arrow-right"></i>
                                     <span>Đăng xuất</span>
                                 </a>
                             </li>
+                            <li>
+                            <li>
 
-                        </ul><!-- End Profile Dropdown Items -->
-                    </li><!-- End Profile Nav -->
-                <?php
+                                <a class="dropdown-item d-flex align-items-center" href="index.php?controller=login&action=register">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Đăng ký</span>
+                                </a>
+                            </li>
+                    </li>
+
+            </ul><!-- End Profile Dropdown Items -->
+            </li><!-- End Profile Nav -->
+        <?php
                 } ?>
 
-            </ul>
+        </ul>
         </nav><!-- End Icons Navigation -->
 
     </header><!-- End Header -->
